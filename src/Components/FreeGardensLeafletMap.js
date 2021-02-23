@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {Container, Row, Col, Card, Button} from "react-bootstrap";
+import React from "react";
+import {Row, Card, Button} from "react-bootstrap";
 import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 import L from "leaflet";
 import  carrot from '../assets/carrot.png';
@@ -7,7 +7,7 @@ import {NavLink} from 'react-router-dom';
 import { GeoAltFill, Heart, HeartFill } from 'react-bootstrap-icons';
 
     
-function FreieGaerten({gaerten, ownAnzeige, setMerkFrei, merkFrei, merkFreiItems}) {
+function FreeGardenLeafletMap({gaerten, ownAnzeige, setMerkFrei, merkFrei, merkFreiItems}) {
 
   
   function merkFreiGarten(gartenid) {
@@ -23,7 +23,7 @@ function FreieGaerten({gaerten, ownAnzeige, setMerkFrei, merkFrei, merkFreiItems
       ])
     } else {
       
-      setMerkFrei(merkFrei.filter(item => item != gartenid))
+      setMerkFrei(merkFrei.filter(item => item !== gartenid))
     }
   }
 
@@ -83,4 +83,4 @@ function FreieGaerten({gaerten, ownAnzeige, setMerkFrei, merkFrei, merkFreiItems
     )
 }
 
-export default FreieGaerten
+export default FreeGardenLeafletMap

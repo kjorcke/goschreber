@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Col, Row, Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import { Container, Col, Row, Nav, Navbar, Button } from 'react-bootstrap';
 import  carrot from '../assets/carrot.png';
-import { NavLink } from 'react-router-dom';
+
 
 function Header() {
 

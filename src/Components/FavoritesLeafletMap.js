@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 import L from "leaflet";
 import  carrot from '../assets/carrot.png';
-import {Container, Row, Col, Card, Button} from "react-bootstrap";
+import {Container, Row, Card, Button} from "react-bootstrap";
 import { GeoAltFill, Envelope, Globe2, Heart, HeartFill } from 'react-bootstrap-icons';
 import {NavLink} from 'react-router-dom';
 
-function FavoritenMap({favouritedItems, merkFreiItems, setFavourites, favourites, setMerkFrei, merkFrei }) {
+function FavoritesLeafletMap({favouritedItems, merkFreiItems, setFavourites, favourites, setMerkFrei, merkFrei }) {
 
 
     function favouriteGarden(gardenid) {
@@ -21,7 +21,7 @@ function FavoritenMap({favouritedItems, merkFreiItems, setFavourites, favourites
           ])
         } else {
           
-          setFavourites(favourites.filter(item => item != gardenid))
+          setFavourites(favourites.filter(item => item !== gardenid))
         }
       }
      
@@ -49,7 +49,7 @@ function FavoritenMap({favouritedItems, merkFreiItems, setFavourites, favourites
           ])
         } else {
           
-          setMerkFrei(merkFrei.filter(item => item != gartenid))
+          setMerkFrei(merkFrei.filter(item => item !== gartenid))
         }
       }
     
@@ -140,4 +140,4 @@ function FavoritenMap({favouritedItems, merkFreiItems, setFavourites, favourites
     )
 }
 
-export default FavoritenMap
+export default FavoritesLeafletMap

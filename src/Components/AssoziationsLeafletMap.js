@@ -1,17 +1,13 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 import L from "leaflet";
 import  carrot from '../assets/carrot.png';
-import KgvItem from "./KgvItem";
-import useLocalStorage from '../useLocalStorage';
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import Favourites from "./Favourites";
-import {Container, Row, Col, Card, Button} from "react-bootstrap";
+import {Container, Row, Card, Button} from "react-bootstrap";
 import { GeoAltFill, Envelope, Globe2, Heart, HeartFill } from 'react-bootstrap-icons';
 
 
 
-function Map({kgvs, favourites, favouritedItems, setFavourites}) {
+function AssoziationsLeafletMap({kgvs, favourites, favouritedItems, setFavourites}) {
 
   
   function favouriteGarden(gardenid) {
@@ -26,7 +22,7 @@ function Map({kgvs, favourites, favouritedItems, setFavourites}) {
         ])
       } else {
         
-        setFavourites(favourites.filter(item => item != gardenid))
+        setFavourites(favourites.filter(item => item !== gardenid))
       }
     }
 
@@ -94,4 +90,4 @@ function Map({kgvs, favourites, favouritedItems, setFavourites}) {
     )
 }
 
-export default Map
+export default AssoziationsLeafletMap

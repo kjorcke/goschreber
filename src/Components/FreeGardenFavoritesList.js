@@ -1,9 +1,9 @@
 import React from 'react';
-import {Container, Row, Col, Card, Button, ListGroup} from "react-bootstrap";
+import {Container, Row, Card, Button, ListGroup} from "react-bootstrap";
 import { GeoAltFill, Heart, HeartFill, Envelope, Telephone, PersonCircle } from 'react-bootstrap-icons';
 import {NavLink} from 'react-router-dom';
 
-function FavoritenFreiItem({merkClick, freigarten, merkFreiItems}) {
+function FreeGardenFavoritesList({merkClick, freigarten, merkFreiItems}) {
 
 
     const isMerkFrei = () => {
@@ -73,4 +73,4 @@ function FavoritenFreiItem({merkClick, freigarten, merkFreiItems}) {
     )
 }
 
-export default FavoritenFreiItem
+export default FreeGardenFavoritesList

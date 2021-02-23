@@ -6,7 +6,7 @@ import { GeoAltFill, PersonCircle, Telephone, Envelope, Heart, HeartFill } from 
 
 
 
-function AnzeigenItem({setMerkFrei, merkFrei, merkFreiItems}) {
+function FreeGardenDetailItem({setMerkFrei, merkFrei, merkFreiItems}) {
 
     const {id} = useParams ();
     const [isLoading, setIsLoading] = useState(true);
@@ -46,7 +46,7 @@ function AnzeigenItem({setMerkFrei, merkFrei, merkFreiItems}) {
             ])
         } else {
             
-            setMerkFrei(merkFrei.filter(item => item != gartenid))
+            setMerkFrei(merkFrei.filter(item => item !== gartenid))
         }
         }    
       
@@ -120,4 +120,4 @@ function AnzeigenItem({setMerkFrei, merkFrei, merkFreiItems}) {
     )
 }
 
-export default AnzeigenItem
+export default FreeGardenDetailItem

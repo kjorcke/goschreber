@@ -1,18 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Card, Container, Row, Col, Form, Button} from "react-bootstrap";
 
 
 
 
 
-function Inserieren({kgvs, anzeige, setAnzeige, handleSubmit}) {
+function FreeGardenForm({kgvs, anzeige, setAnzeige, handleSubmit}) {
 
 
 /* 
 const [gartenId, setGartenId] = useState(""); */
     
 function handleSelect(e){
-    const verein = (kgvs.filter((verein) => verein.kgvname == e.target.value))
+    const verein = (kgvs.filter((verein) => verein.kgvname === e.target.value))
 
     const kgv = (verein.map(el => el._id))
     
@@ -115,4 +115,4 @@ return (
     )
 }
 
-export default Inserieren
+export default FreeGardenForm

@@ -1,25 +1,24 @@
 import React, {useState, useEffect} from "react";
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import Map from "./Components/Map";
+import AssoziationsLeafletMap from "./Components/AssoziationsLeafletMap";
 import Header from "./Components/Header";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Button, Image} from 'react-bootstrap';
-import FreieGaerten from './Components/FreieGaerten';
-import Inserieren from './Components/Inserieren';
-import KgvItem from './Components/KgvItem';
-import Favourites from './Components/Favourites';
-import AnzeigenItem from './Components/AnzeigenItem';
-import FreiItem from './Components/FreiItem';
-import FavoritenMap from './Components/FavoritenMap';
-import FavoritenFreiItem from './Components/FavoritenFreiItem';
-import FavoritenVereinItem from './Components/FavoritenVereinItem';
-import VerwaltungsItem from './Components/VerwaltungsItem';
+import FreeGardenList from './Components/FreeGardenList';
+import FreeGardenForm from './Components/FreeGardenForm';
+import AssoziationItem from './Components/AssoziationItem';
+import FreeGardenDetailItem from './Components/FreeGardenDetailItem';
+import FavoritesLeafletMap from './Components/FavoritesLeafletMap';
+import AssoziationsFavoritesList from './Components/AssoziationsFavoritesList';
+import OwnAdDelete from './Components/OwnAdDelete';
 import axios from 'axios';
 import useLocalStorage from './useLocalStorage';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { useHistory } from "react-router-dom";
+import FreeGardenFavoritesList from "./Components/FreeGardenFavoritesList";
+import FreeGardenLeafletMap from "./Components/FreeGardensLeafletMap";
 
 
 
@@ -93,7 +92,7 @@ function handleSubmit(e) {
             history.push(`frei/${_id}`);
         })  
   }
-  const userAnzeigen = gaerten.filter(({_id}) => ownAnzeige.indexOf(_id) != -1)
+  const userAnzeigen = gaerten.filter(({_id}) => ownAnzeige.indexOf(_id) !== -1)
 
   /* ////////////////////////////////////////////////////////////////////////////////////////// */
 
@@ -115,11 +114,11 @@ function handleSubmit(e) {
       ])
     } else {
       
-      setFavourites(favourites.filter(item => item != gardenid))
+      setFavourites(favourites.filter(item => item !== gardenid))
     }
   }
 
-    const favouritedItems = kgvs.filter(({_id}) => favourites.indexOf(_id) != -1)
+    const favouritedItems = kgvs.filter(({_id}) => favourites.indexOf(_id) !== -1)
     console.log(favouritedItems)
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////*/
@@ -139,11 +138,11 @@ function merkFreiGarten(gartenid) {
     ])
   } else {
     
-    setMerkFrei(merkFrei.filter(item => item != gartenid))
+    setMerkFrei(merkFrei.filter(item => item !== gartenid))
   }
 }
 
-  const merkFreiItems = gaerten.filter(({_id}) => merkFrei.indexOf(_id) != -1)
+  const merkFreiItems = gaerten.filter(({_id}) => merkFrei.indexOf(_id) !== -1)
   console.log(merkFreiItems)
 /*////////////////////////////////////////////////////////////////////////////*/
 
@@ -157,11 +156,11 @@ function merkFreiGarten(gartenid) {
             <Container fluid>
               <Row>
                 <Col xs={8}>
-                  <Map favouritedItems={favouritedItems} favourites={favourites} setFavourites={setFavourites} kgvs={kgvs}/>
+                  <AssoziationsLeafletMap favouritedItems={favouritedItems} favourites={favourites} setFavourites={setFavourites} kgvs={kgvs}/>
                 </Col>
                 <Col>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
-                    {kgvs.map(verein => <KgvItem favouritedItems={favouritedItems} favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
+                    {kgvs.map(verein => <AssoziationItem favouritedItems={favouritedItems} favClick={() => favouriteGarden(verein._id)} verein={verein} key={verein._id}/>)}
                  </Scrollbars>
                 </Col>
               </Row>
@@ -171,21 +170,21 @@ function merkFreiGarten(gartenid) {
             <Container fluid>
               <Row>
             <Col xs={8}>
-              <FreieGaerten ownAnzeige={ownAnzeige} setMerkFrei={setMerkFrei} merkFrei={merkFrei} merkFreiItems={merkFreiItems} gaerten= {gaerten} kgvs={kgvs}/>
+              <FreeGardenLeafletMap ownAnzeige={ownAnzeige} setMerkFrei={setMerkFrei} merkFrei={merkFrei} merkFreiItems={merkFreiItems} gaerten= {gaerten} kgvs={kgvs}/>
             </Col>  
             <Col>
               <Scrollbars style={{ width: "100%", height: "100%" }}>
-                {gaerten.map(freigarten=> <FreiItem merkFreiItems={merkFreiItems} merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id}/>)}
+                {gaerten.map(freigarten=> <FreeGardenList merkFreiItems={merkFreiItems} merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id}/>)}
               </Scrollbars>
             </Col>
             </Row>
             </Container>
           </Route>
           <Route path="/frei/:id"> 
-            <AnzeigenItem setMerkFrei={setMerkFrei} merkFrei={merkFrei} merkFreiItems={merkFreiItems} />
+            <FreeGardenDetailItem setMerkFrei={setMerkFrei} merkFrei={merkFrei} merkFreiItems={merkFreiItems} />
           </Route>
           <Route exact path="/inserieren"> 
-            <Inserieren handleSubmit={handleSubmit} anzeige={anzeige} setAnzeige={setAnzeige} gaerten= {gaerten} kgvs={kgvs}/>
+            <FreeGardenForm handleSubmit={handleSubmit} anzeige={anzeige} setAnzeige={setAnzeige} gaerten= {gaerten} kgvs={kgvs}/>
           </Route>
           <Route exact path="/verwalten">
             <Container className="mt-4"fluid>
@@ -194,7 +193,7 @@ function merkFreiGarten(gartenid) {
                 <Image src="https://www.leipzig-lese.de/media_leipzig_lese/schreber_kopfbild_dsc04811.jpg" fluid rounded/>
             </Col>
             <Col>
-              {userAnzeigen.map(eigAnzeige => <VerwaltungsItem ownAnzeige={ownAnzeige} setOwnAnzeige={setOwnAnzeige} eigAnzeige={eigAnzeige} key={eigAnzeige._id}/>)} 
+              {userAnzeigen.map(eigAnzeige => <OwnAdDelete ownAnzeige={ownAnzeige} setOwnAnzeige={setOwnAnzeige} eigAnzeige={eigAnzeige} key={eigAnzeige._id}/>)} 
             </Col>
               </Row>
             </Container>
@@ -208,12 +207,12 @@ function merkFreiGarten(gartenid) {
                    <Button className="mb-2"variant="outline-success">Alle Email-Adressen in die Zwischenablage kopieren</Button>
                   </CopyToClipboard>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
-                  {favouritedItems.map(verein => <FavoritenVereinItem favClick={() => favouriteGarden(verein._id)} verein={verein} favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} key={verein._id}/>)}
+                  {favouritedItems.map(verein => <AssoziationsFavoritesList favClick={() => favouriteGarden(verein._id)} verein={verein} favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} key={verein._id}/>)}
                   </Scrollbars>
                 </Col>
                 <Col xs={6}>
                   {/* <h4 style={{color:"white" }}>g</h4> */}
-                 <FavoritenMap favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>
+                 <FavoritesLeafletMap favouritedItems={favouritedItems} setFavourites={setFavourites} favourites={favourites} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>
                 </Col>
                 <Col>
                   <h4 className="text-center mb-3">Merkliste Gärten</h4>
@@ -221,7 +220,7 @@ function merkFreiGarten(gartenid) {
                    <Button className="mb-2"variant="outline-success">Alle Email-Adressen in die Zwischenablage kopieren</Button>
                   </CopyToClipboard>
                   <Scrollbars style={{ width: "100%", height: "100%" }}>
-                    {merkFreiItems.map(freigarten => <FavoritenFreiItem merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>)}
+                    {merkFreiItems.map(freigarten => <FreeGardenFavoritesList merkClick={() => merkFreiGarten(freigarten._id)} freigarten={freigarten} key={freigarten._id} merkFreiItems={merkFreiItems} setMerkFrei={setMerkFrei} merkFrei={merkFrei}/>)}
                   </Scrollbars>
                 </Col>
               </Row>

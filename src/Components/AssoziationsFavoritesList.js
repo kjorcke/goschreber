@@ -2,7 +2,7 @@ import React from 'react';
 import {Container, Row, Col, Card, Button} from "react-bootstrap";
 import { GeoAltFill, Envelope, Globe2, Heart, HeartFill } from 'react-bootstrap-icons';
 
-function FavoritenVereinItem({favouritedItems, favClick, verein}) {
+function AssoziationsFavoritesList({favouritedItems, favClick, verein}) {
 
     const web = verein.web
     const email = verein.email
@@ -35,4 +35,4 @@ function FavoritenVereinItem({favouritedItems, favClick, verein}) {
     )
 }
 
-export default FavoritenVereinItem
+export default AssoziationsFavoritesList

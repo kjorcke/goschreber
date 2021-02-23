@@ -1,12 +1,12 @@
 import React from 'react';
-import {Container, Row, Col, Card, Button, ListGroup} from "react-bootstrap";
+import {Card, Button, ListGroup} from "react-bootstrap";
 import { GeoAltFill, Envelope, Globe2, Heart, HeartFill } from 'react-bootstrap-icons';
 
 
 
 
 
-function KgvItem({favouritedItems, verein, favClick}) {
+function AssoziationItem({favouritedItems, verein, favClick}) {
 
  
   const web = verein.web
@@ -35,6 +35,6 @@ function KgvItem({favouritedItems, verein, favClick}) {
     )
 }
 
-export default KgvItem
+export default AssoziationItem
 
 /* variant={isFavourite() ? 'danger' : 'outline-danger'} */

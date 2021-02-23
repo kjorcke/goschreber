@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import {Container, Col, Row, Card, Button, Image} from "react-bootstrap";
-import { GeoAltFill, Heart, HeartFill } from 'react-bootstrap-icons';
+import {Container, Col, Row, Card, Button} from "react-bootstrap";
+import { GeoAltFill} from 'react-bootstrap-icons';
 import axios from 'axios';
 import {NavLink} from 'react-router-dom';
 
 
 
-function VerwaltungsItem({eigAnzeige, setOwnAnzeige, ownAnzeige}) {
+function OwnAdDelete({eigAnzeige, setOwnAnzeige, ownAnzeige}) {
   
 
     const id = eigAnzeige._id
@@ -62,4 +62,4 @@ function VerwaltungsItem({eigAnzeige, setOwnAnzeige, ownAnzeige}) {
     )
 }
 
-export default VerwaltungsItem
+export default OwnAdDelete
